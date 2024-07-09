@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{product.tittle}}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        .product {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            max-width: 600px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #555;
+        }
+        p {
+            color: #666;
+        }
+        .price {
+            font-size: 1.5em;
+            color: #e60000;
+        }
+        .updated {
+            font-size: 0.9em;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <h1>Product Details</h1>
+    <div class="product">
+       <a href="/">
+           <h4>Main Page</h4>
+       </a>
+        <h2>{{product.tittle}}</h2>
+        <p><strong>{{product.description}}</strong></p>
+        <p class="price"><strong>{{product.price}}</strong></p>
+        <p class="updated"><strong>{{product.updated}}</strong></p>
+    </div>
+</body>
+</html>

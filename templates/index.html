@@ -26,15 +26,17 @@
     </style>
 </head>
 <body>
-    <h1>List of Electronic Products</h1>
-    <ul>
-        {% for i in product_list %}
+<h1>List of Electronic Products</h1>
+<ul>
+    {% for i in product_list %}
+    <a href="products/{{ i.id }}">
         <li>
             <p>Tittle: {{ i.tittle }}</p>
             <p>Description: {{i.description}}</p>
             <p>Price: {{i.price}}</p>
         </li>
-        {% endfor %}
+    </a>
+    {% endfor %}
     </ul>
 </body>
 </html>
