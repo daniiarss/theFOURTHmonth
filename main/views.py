@@ -1,14 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
-from main.models import Product
+from main.models import Product, Review
+
+
 
 def product_detail_view(request, id):
     try:
         product = Product.objects.get(id=id, is_active=True)
     except Product.DoesNotExist:
         raise Http404
+    reviews = Review.objects.filter(product_id=id)
     context = {
-        'product': product
+        'product': product,
+        'reviews': reviews
     }
     return render(request,'product.html', context)
 def about_view(request):

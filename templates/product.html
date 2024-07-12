@@ -22,8 +22,10 @@
             text-align: center;
             color: #333;
         }
-        h2 {
+        h5 {
             color: #555;
+            max-width: 600px;
+            margin: auto;
         }
         p {
             color: #666;
@@ -35,6 +37,18 @@
         .updated {
             font-size: 0.9em;
             color: #999;
+        }
+        ul {
+            list-style-type: none;
+            max-width: 600px;
+            margin: auto;
+        }
+        li {
+            background: #f4f4f4;
+            margin: 10px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -48,6 +62,22 @@
         <p><strong>{{product.description}}</strong></p>
         <p class="price"><strong>{{product.price}}</strong></p>
         <p class="updated"><strong>{{product.updated}}</strong></p>
+        <div>
+        <p>Sizes</p>
+        {% for size in product.sizes.all %}
+        <a>{{ size.name }}</a>
+        {% endfor %}
     </div>
+    </div>
+<h5>Review Products</h5>
+<ul>
+    {% for i in reviews %}
+        <li>
+            <p>Author: {{ i.author }}</p>
+            <p>Text: {{i.text}}</p>
+            <p>Stars: {{i.stars}}</p>
+        </li>
+    {% endfor %}
+    </ul>
 </body>
 </html>
