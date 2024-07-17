@@ -13,6 +13,7 @@ class Product(models.Model):
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
         ordering = ['tittle']
+    image = models.ImageField(null=True, upload_to='images')
     sizes = models.ManyToManyField(Size, blank=True)
     tittle = models.CharField(max_length=255, verbose_name="Название")
     description = models.TextField(verbose_name="Модель")

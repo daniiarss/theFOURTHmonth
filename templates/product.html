@@ -1,60 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{product.tittle}}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f9f9f9;
-        }
-        .product {
-            background: #fff;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            max-width: 600px;
-            margin: auto;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        h5 {
-            color: #555;
-            max-width: 600px;
-            margin: auto;
-        }
-        p {
-            color: #666;
-        }
-        .price {
-            font-size: 1.5em;
-            color: #e60000;
-        }
-        .updated {
-            font-size: 0.9em;
-            color: #999;
-        }
-        ul {
-            list-style-type: none;
-            max-width: 600px;
-            margin: auto;
-        }
-        li {
-            background: #f4f4f4;
-            margin: 10px 0;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Product Details</h1>
-    <div class="product">
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Product Details</h1>
+<div class="product">
        <a href="/">
            <h4>Main Page</h4>
        </a>
@@ -78,6 +27,6 @@
             <p>Stars: {{i.stars}}</p>
         </li>
     {% endfor %}
-    </ul>
-</body>
-</html>
+</ul>
+{% endblock %}
+
