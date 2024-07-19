@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{% block content %}
+<form method="post" action="/add_product/" style="padding-left:300px; padding-right:300px">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Send</button>
+</form>
+
+{% endblock %}

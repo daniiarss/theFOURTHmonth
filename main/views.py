@@ -1,9 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from main.models import Product, Review
+from main.forms import ProductForm
 
-
-
+def create_product_view(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {
+        'form': ProductForm()
+    }
+    return render(request, 'add.html', context=context)
 def product_detail_view(request, id):
     try:
         product = Product.objects.get(id=id, is_active=True)
