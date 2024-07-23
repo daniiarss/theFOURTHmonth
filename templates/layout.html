@@ -20,9 +20,23 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
+          {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="/add_product/">Add product</a>
         </li>
+          {% endif %}
+          <li class="nav-item">
+          <a class="nav-link" href="/registration/">Creat User</a>
+        </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+              <a class="nav-link" href="/logout/">Logout({{ user.username }})</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+              <a class="nav-link" href="/authorization/">Login</a>
+            </li>
+          {% endif %}
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

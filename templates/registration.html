@@ -1,0 +1,8 @@
+{% extends 'layout.html' %}
+{% block content %}
+<form action="/registration/" method="post" style="padding-left:300px; padding-right:300px">
+    {% csrf_token %}
+    {{ form.as_p }}
+        <button type="submit" class="btn btn-danger">Send</button>
+</form>
+{% endblock %}
