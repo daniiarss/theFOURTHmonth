@@ -1,6 +1,32 @@
 {% extends 'layout.html' %}
 {% load static %}
 {% block content %}
+    <div class="row">
+    <form class="d-flex" method="get" action="/">
+        <input class="form-control me-2"
+               type="search"
+               placeholder="Search"
+               name="search"
+               aria-label="Search"
+               value="{{ search_word }}"
+        >
+        <input class="form-control me-2"
+               type="number"
+               placeholder="Price from"
+               name="price_from"
+               aria-label="Search"
+               value="{{price_from}}"
+        >
+        <input class="form-control me-2"
+               type="number"
+               placeholder="Price to"
+               name="price_to"
+               aria-label="Search"
+               value="{{price_to}}"
+        >
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    </div>
 {% for i in product_list %}
     <div class="card" style="width: 18rem; margin:5px">
         <img src="{% if i.image %}
@@ -12,8 +38,16 @@
         <div class="card-body">
             <h5 class="card-title">{{ i.tittle }}</h5>
             <p class="card-text">{{ i.description }}</p>
+            <p class="card-text">{{ i.price }}</p>
             <a href="/products/{{ i.id }}" class="btn btn-primary">More about product</a>
         </div>
     </div>
         {% endfor %}
+    <nav aria-label="Page navigation example">
+  <ul class="pagination">
+      {% for button in button_list %}
+    <li class="page-item {% if button == page %} active {% endif %}"><a class="page-link" href="http://127.0.0.1:8000/?search={{search_word}}&price_from={{price_from}}&price_to={{price_to}}&page={{button}}">{{button}}</a></li>
+      {% endfor %}
+  </ul>
+</nav>
         {% endblock %}

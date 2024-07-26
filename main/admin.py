@@ -12,7 +12,7 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ['tittle', 'description']
     list_filter = ['sizes', 'price', 'is_active']
     list_editable = ['price', 'is_active']
-    list_per_page = 100
+    list_per_page = 4
     read_only_fields = ['update']
 
 

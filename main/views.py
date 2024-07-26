@@ -5,6 +5,7 @@ from main.forms import ProductForm, UserRegistrationForm, UserLoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from .constants import PAGE_SIZE
 
 def logout_view(request):
     logout(request)
@@ -62,8 +63,39 @@ def about_view(request):
 
 
 def main_page_view(request):
-    products = Product.objects.filter(is_active=True)
+    search_word = (request.GET.get('search', ''))
+    try:
+        page = int(request.GET.get('page', 1))
+    except:
+        page = 1
+
+    try:
+        price_from = int(request.GET.get('price_from', 0))
+    except:
+        price_from = 0
+    try:
+        price_to = int(request.GET.get('price_to', 0))
+    except:
+        price_to = None
+    products = Product.objects.filter(
+        tittle__icontains=search_word,
+        price__gte=price_from,
+    )
+    if price_to:
+        products = products.filter(
+            price__lte=price_to,
+        )
+    products = products.order_by('-price', '-updated')
+    total_amount = len(products)
+    buttons = total_amount // PAGE_SIZE
+    if total_amount % PAGE_SIZE > 0:
+        buttons += 1
     context = {
-        'product_list': products
+        'product_list': products[PAGE_SIZE * (page -1):PAGE_SIZE * page],
+        'search_word': search_word,
+        'price_from': price_from if price_from != 0 else '',
+        'price_to': price_to,
+        'button_list': [i for i in range(1, buttons+1)],
+        'page': page
     }
     return render(request, 'index.html', context=context)
